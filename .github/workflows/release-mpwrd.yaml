@@ -7,23 +7,26 @@ jobs:
   build:
     # reuse workflow from build-armbian.yaml
     uses: ./.github/workflows/build-armbian.yaml
+
   release:
     needs: build
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
+
       - name: Get Version
         id: version
         run: echo "mpwrd=$(cat mPWRD-VERSION)" >> $GITHUB_OUTPUT
+
       - name: Download Artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
-          name: '**'
-          path: output/images/*
+          path: output/images/
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: output/images/*
+          files: output/images/*.img.xz
           draft: true
           prerelease: true
           name: mPWRD-OS ${{ steps.version.outputs.mpwrd }} Alpha
