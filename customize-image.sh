@@ -61,16 +61,45 @@ Main() {
 	InstallAptPkg "pipx"
 	InstallAptPkg "avahi-daemon"
 	InstallAptPkg "cockpit cockpit-networkmanager"
+
+	# Spud Added packages for dev-kit in runtime
+	InstallAptPkg "python3-pip"
+	InstallAptPkg "python3-dev"
+	InstallAptPkg "python3-setuptools"
+	InstallAptPkg "python3-venv"
+	InstallAptPkg "build-essential"
+	InstallAptPkg "pkg-config"
+	InstallAptPkg "rustc"
+	InstallAptPkg "cargo"
+	InstallAptPkg "libffi-dev"
+	InstallAptPkg "libssl-dev"
+	InstallAptPkg "git"
+
 	case $pipx_g in
 		true)
-			InstallPipxPkg "meshtastic"
+			# Spud: removed and put into global pip install
+			#InstallPipxPkg "meshtastic"
+
+			# pdxlocs apps
 			InstallPipxPkg "contact"
+			InstallPipxPkg "vnode"
 			;;
 		*)
 			echo "'pipx install --global' skipped for ${RELEASE} due to old pipx version."
 			echo "Target Debian 13+ or Ubuntu 26.04+ for pipx global support."
 			;;
 	esac
+
+	#global pip installs (not via pipx)
+	InstallPipPkg "meshtastic"
+
+	#meshing-around
+	InstallAptPkg "fonts-noto-color-emoji"
+	GitClone "https://github.com/SpudGunMan/meshing-around" "/opt/meshing-around"
+	if [ -d "/opt/meshing-around/" ]; then
+		./opt/meshing-around/bootstrap.sh
+	fi
+
 	# Always run
 	ApplyFSOverlay
 	CleanupApt
@@ -119,9 +148,25 @@ InstallAptPkg() {
 InstallPipxPkg() {
 	PKGSPEC="$1"
 	# Install package via 'pipx install --global'
+	echo "PIPX: Installing ${PKGSPEC}..."
 	pipx install --global "${PKGSPEC}"
 	# --global flag requires pipx 1.5.0 or newer
 } # InstallPipxPkg
+
+InstallPipPkg() {
+	PKGSPEC="$1"
+	echo "PIP: Installing ${PKGSPEC}..."
+	# Install package via pip
+	# Avoid uninstalling distro-managed Python packages (no RECORD metadata)
+	pip install "${PKGSPEC}" --break-system-packages --ignore-installed
+} # InstallPipPkg
+
+GitClone() {
+	REPO_URL="$1"
+	DEST_DIR="$2"
+	echo "GIT: Cloning ${REPO_URL}..."
+	git clone "$REPO_URL" "$DEST_DIR"
+} # GitClone
 
 CleanupApt() {
 	apt-get clean
