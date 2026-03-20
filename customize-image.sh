@@ -86,7 +86,7 @@ Main() {
 
 			# pdxlocs apps
 			InstallPipxPkg "contact"
-			InstallPipxPkg "vnode"
+			#InstallPipxPkg "vnode"
 			;;
 		*)
 			echo "'pipx install --global' skipped for ${RELEASE} due to old pipx version."
