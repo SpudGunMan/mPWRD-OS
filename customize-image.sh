@@ -56,11 +56,15 @@ Main() {
 	AddMeshtasticRepo
 	AddMPWRD_Repo_OBS
 	apt-get update
+	InstallAptPkg "vim"
 	InstallAptPkg "meshtasticd"
 	InstallAptPkg "mpwrd-menu"
 	InstallAptPkg "pipx"
 	InstallAptPkg "avahi-daemon"
 	InstallAptPkg "cockpit cockpit-networkmanager"
+
+	InstallAptPkg "i2c-tools"
+	InstallAptPkg "net-tools"
 
 	# Spud Added packages for dev-kit in runtime
 	InstallAptPkg "python3-pip"
