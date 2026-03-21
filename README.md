@@ -1,6 +1,10 @@
 # mPWRD-OS
 [Armbian](https://armbian.com/) + [Meshtastic](https://meshtastic.org/) == **mPWRD-OS**
 
+## Spudgunman Fork
+- Has meshing-around BBS loaded
+- Full set of common tools needed to load mesh projects
+
 ## Features
 - 🐧 Debian 13 `trixie` based.
 - ❤️ Built with [Armbian](https://armbian.com/) *userpatches* framework.
@@ -49,7 +53,7 @@ cd build
 
 2. Checkout this repo as "userpatches"
 ```sh
-git clone https://github.com/mPWRD-OS/mPWRD-OS userpatches
+git clone https://github.com/spudgunman/mPWRD-OS userpatches
 ```
 
 3. Compile!
