@@ -65,3 +65,10 @@ git clone https://github.com/spudgunman/mPWRD-OS userpatches
 This example will build the configuration at `config-luckfox-pico-mini.conf`
 
 The output image will go into .. build/output/images
+
+Once booted and system is setup radio is lit up and working..
+edit the /opt/meshing-around/config.ini as needed
+to install sercvice run from the /opt/meshing-around directory
+`sudo bash etc/install_service.sh`
+
+your femtofox should now be running meshing-around bot!
