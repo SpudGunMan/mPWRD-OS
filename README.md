@@ -2,8 +2,8 @@
 [Armbian](https://armbian.com/) + [Meshtastic](https://meshtastic.org/) == **mPWRD-OS**
 
 ## Spudgunman Fork
-- Has meshing-around BBS loaded
-- Full set of common tools needed to load mesh projects
+- Has [meshing-around BBS](https://github.com/SpudGunMan/meshing-around) loaded
+- Full set of common dev tools needed to load mesh projects
 
 ## Features
 - 🐧 Debian 13 `trixie` based.
@@ -38,12 +38,14 @@ See: [Board Support](https://github.com/mPWRD-OS/mPWRD-OS/wiki/Board-Support) wi
 
 ## Using mPWRD-OS
 
-1. Flash the latest image from the [Releases](https://github.com/mPWRD-OS/mPWRD-OS/releases) page using [balenaEtcher](https://etcher.balena.io/) or a similar tool.
+1. Flash the latest image from the build tool, using [balenaEtcher](https://etcher.balena.io/) or a similar tool.
    - For boards with eMMC: Flash with `rkdevtool`. (Guide coming soon).
 2. SSH into the device (or connect with Serial), login with default credentials. You will be prompted to change this upon first login.
 3. Run `mpwrd-menu` to setup Meshtastic, change settings, and more!
 
 ## Using this repo
+
+To get a image to flash to SDcard for the femtofox follow these directions. I use a Ubuntu 24.04 Virtual Image to follow the steps below.
 
 1. Checkout `armbian/build` and enter the dir
 ```sh
@@ -58,6 +60,8 @@ git clone https://github.com/spudgunman/mPWRD-OS userpatches
 
 3. Compile!
 ```sh
-./compile.sh build luckfox-pico-mini
+./compile.sh luckfox-pico-mini build KERNEL_CONFIGURE=no
 ```
 This example will build the configuration at `config-luckfox-pico-mini.conf`
+
+The output image will go into .. build/output/images
