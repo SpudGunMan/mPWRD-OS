@@ -71,4 +71,4 @@ edit the /opt/meshing-around/config.ini as needed
 to install sercvice run from the /opt/meshing-around directory
 `sudo bash etc/install_service.sh`
 
-your femtofox should now be running meshing-around bot!
+your mPWRD-OS device should now be running meshing-around bot!
