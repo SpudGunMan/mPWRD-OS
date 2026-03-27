@@ -4,6 +4,7 @@
 
 set -o pipefail
 
+RED=$'\e[31m'
 GREEN=$'\e[32m'
 BLUE=$'\e[34m'
 BOLD=$'\e[1m'
@@ -12,6 +13,7 @@ echo -n -e "\e[32m"
 cat << EOF
 ${GREEN}mPWRD-OS${RESET} commands:
   ${GREEN}${BOLD}mprwd-menu${RESET} - mPWRD-OS Main Menu
+  ${RED}armbian-config${RESET} - Armbian Configuration Utility
   ${BLUE}contact${RESET} - TUI Chat application
   ${GREEN}meshtastic${RESET} - Meshtastic CLI
 EOF
